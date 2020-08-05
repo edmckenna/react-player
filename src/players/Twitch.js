@@ -3,9 +3,9 @@ import React, { Component } from 'react'
 import { callPlayer, getSDK, randomString } from '../utils'
 import { canPlay, MATCH_URL_TWITCH_CHANNEL, MATCH_URL_TWITCH_VIDEO } from '../patterns'
 
-const SDK_URL = 'https://player.twitch.tv/js/embed/v1.js'
+const SDK_URL = 'https://embed.twitch.tv/embed/v1.js'
 const SDK_GLOBAL = 'Twitch'
-const PLAYER_ID_PREFIX = 'twitch-player-'
+const PLAYER_ID_PREFIX = 'twitch-embed-'
 
 export default class Twitch extends Component {
   static displayName = 'Twitch'
@@ -31,7 +31,7 @@ export default class Twitch extends Component {
       return
     }
     getSDK(SDK_URL, SDK_GLOBAL).then(Twitch => {
-      this.player = new Twitch.Player(this.playerID, {
+      this.player = new Twitch.Embed(this.playerID, {
         video: isChannel ? '' : id,
         channel: isChannel ? id : '',
         height: '100%',
